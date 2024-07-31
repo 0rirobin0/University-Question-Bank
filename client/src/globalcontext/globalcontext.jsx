@@ -7,7 +7,9 @@ const GlobalProvider = ({ children }) => {
   const [msg, setmsg] = useState("Hello, world!");
 
   return (
-    <GlobalContext.Provider value={{ msg, setmsg }}>
+    <GlobalContext.Provider value={
+      { msg, setmsg }
+      }>
       {children}
     </GlobalContext.Provider>
   );
