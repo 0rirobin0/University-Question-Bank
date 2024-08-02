@@ -44,13 +44,19 @@ function fetchDepartments() {
     { value: "Chemistry", label: "Chemistry" },
     { value: "Civil Engineering", label: "Civil Engineering" },
     { value: "Clinical Psychology", label: "Clinical Psychology" },
-    { value: "Computer Science and Engineering", label: "Computer Science and Engineering" },
+    {
+      value: "Computer Science and Engineering",
+      label: "Computer Science and Engineering",
+    },
     { value: "Criminology", label: "Criminology" },
     { value: "Development Studies", label: "Development Studies" },
     { value: "Drama and Dramatics", label: "Drama and Dramatics" },
     { value: "Economics", label: "Economics" },
     { value: "Education", label: "Education" },
-    { value: "Electrical and Electronic Engineering", label: "Electrical and Electronic Engineering" },
+    {
+      value: "Electrical and Electronic Engineering",
+      label: "Electrical and Electronic Engineering",
+    },
     { value: "English", label: "English" },
     { value: "Environmental Science", label: "Environmental Science" },
     { value: "Finance", label: "Finance" },
@@ -62,13 +68,22 @@ function fetchDepartments() {
     { value: "Geology", label: "Geology" },
     { value: "History", label: "History" },
     { value: "Horticulture", label: "Horticulture" },
-    { value: "Industrial and Production Engineering", label: "Industrial and Production Engineering" },
+    {
+      value: "Industrial and Production Engineering",
+      label: "Industrial and Production Engineering",
+    },
     { value: "Information Technology", label: "Information Technology" },
     { value: "International Relations", label: "International Relations" },
     { value: "Islamic Studies", label: "Islamic Studies" },
-    { value: "Journalism and Media Studies", label: "Journalism and Media Studies" },
+    {
+      value: "Journalism and Media Studies",
+      label: "Journalism and Media Studies",
+    },
     { value: "Law", label: "Law" },
-    { value: "Library and Information Science", label: "Library and Information Science" },
+    {
+      value: "Library and Information Science",
+      label: "Library and Information Science",
+    },
     { value: "Linguistics", label: "Linguistics" },
     { value: "Management", label: "Management" },
     { value: "Marketing", label: "Marketing" },
@@ -79,7 +94,10 @@ function fetchDepartments() {
     { value: "Microbiology", label: "Microbiology" },
     { value: "Music", label: "Music" },
     { value: "Nuclear Engineering", label: "Nuclear Engineering" },
-    { value: "Nutrition and Food Science", label: "Nutrition and Food Science" },
+    {
+      value: "Nutrition and Food Science",
+      label: "Nutrition and Food Science",
+    },
     { value: "Pharmacy", label: "Pharmacy" },
     { value: "Philosophy", label: "Philosophy" },
     { value: "Physics", label: "Physics" },
@@ -94,13 +112,28 @@ function fetchDepartments() {
     { value: "Sociology", label: "Sociology" },
     { value: "Soil Science", label: "Soil Science" },
     { value: "Statistics", label: "Statistics" },
-    { value: "Telecommunication Engineering", label: "Telecommunication Engineering" },
+    {
+      value: "Telecommunication Engineering",
+      label: "Telecommunication Engineering",
+    },
     { value: "Textile Engineering", label: "Textile Engineering" },
-    { value: "Theatre and Performance Studies", label: "Theatre and Performance Studies" },
-    { value: "Tourism and Hospitality Management", label: "Tourism and Hospitality Management" },
-    { value: "Urban and Regional Planning", label: "Urban and Regional Planning" },
+    {
+      value: "Theatre and Performance Studies",
+      label: "Theatre and Performance Studies",
+    },
+    {
+      value: "Tourism and Hospitality Management",
+      label: "Tourism and Hospitality Management",
+    },
+    {
+      value: "Urban and Regional Planning",
+      label: "Urban and Regional Planning",
+    },
     { value: "Veterinary Science", label: "Veterinary Science" },
-    { value: "Water Resources Engineering", label: "Water Resources Engineering" },
+    {
+      value: "Water Resources Engineering",
+      label: "Water Resources Engineering",
+    },
     { value: "Women and Gender Studies", label: "Women and Gender Studies" },
     { value: "Zoology", label: "Zoology" },
     { value: "Software Engineering", label: "Software Engineering" },
@@ -140,9 +173,9 @@ export function SelectDepartment() {
           <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[400px] p-0">
+      <PopoverContent className="w-[400px] h-[280px] p-0" side="bottom">
         <Command>
-          <CommandInput placeholder="Search department..." className="h-9" />
+          <CommandInput placeholder="Search department" className="h-9" />
           <CommandEmpty>No department found.</CommandEmpty>
           <CommandGroup>
             <CommandList>

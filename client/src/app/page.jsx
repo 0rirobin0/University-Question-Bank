@@ -51,15 +51,21 @@ export default function Home() {
           alt="Home image"
           width={500}
           height={300}
+          placeholder="blur"
           priority
         />
       </div>
       {/* RightSide */}
       <div className="rightpart w-full md:w-1/2 flex items-center justify-center md:justify-start">
-        <Card className="w-full max-w-sm md:max-w-lg">
+        <Card className="w-full max-w-sm md:max-w-lg drop-shadow-xl ">
           <CardHeader>
-            <CardTitle>Get Your Questions</CardTitle>
-            <CardDescription>Card Description</CardDescription>
+            <CardTitle className=" flex justify-center mt-5">
+              University Questions Bank
+            </CardTitle>
+            <CardDescription className="flex text-primary justify-center my-5">
+              {" "}
+              Find your Questions{" "}
+            </CardDescription>
           </CardHeader>
           <CardContent className=" flex flex-col justify-center">
             <SelectUniversity />
