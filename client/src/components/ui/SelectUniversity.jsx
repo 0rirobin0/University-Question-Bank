@@ -182,7 +182,7 @@ export function SelectUniversity() {
           <CommandInput placeholder="Search university..." className="h-9" />
           <CommandEmpty>No university found.</CommandEmpty>
           <CommandGroup>
-            <CommandList>
+            <CommandList overflow-hidden>
               {universities.map((university) => (
                 <CommandItem
                   key={university.value}
