@@ -36,8 +36,8 @@ export default function Page() {
 
   return (
     <>
-      <div className="headsection w-full h-[20vh] border ">
-        <div className="flex justify-between items-center px-4 mt-1">
+      <div className="headsection w-full h-[140px] border-2">
+        <div className="flex justify-between items-center px-4 my-1">
           {/* Icons for mobile view */}
           <div className="md:hidden flex items-center space-x-2">
             <div>
@@ -122,7 +122,7 @@ export default function Page() {
             <LiaExchangeAltSolid className="mx-2 text-xl font-bold" />
           </div>
 
-          <div className="selection hidden md:flex justify-center mb-3 px-20 ">
+          <div className="selection hidden md:flex justify-center my-2">
             <SelectUniversity />
             <SelectDepartment />
             <SelectCourse />
@@ -149,30 +149,7 @@ export default function Page() {
           </div>
         </div>
       </div>
-      {/* Main Body Section */}
-      <main className="flex w-full h-[80vh]  ">
-        {/* left */}
-
-        <div className="left hidden  w-0 md:w-[20vw] h-[80vh] md:flex flex-col items-center border-2  ">
-          <div className="flex justify-start my-5 mx-6 hidden md:flex">
-            <h3 className="font-bold text-primary">FILTERS</h3>
-            <CiFilter className="mx-2 text-xl font-bold" />
-          </div>
-          <div className="text-center font-bold text-sm my-2  w-full h-auto bg-primary-foreground">
-            TYPES
-          </div>
-          <FilterTypes />
-
-          <div className="text-center font-bold text-sm my-2  w-full h-auto bg-primary-foreground">
-            YEARS
-          </div>
-          <FilterYears />
-        </div>
-
-        {/* Right */}
-
-        <div className="right w-screen md:w-[80vw] h-[80vh] border-2"></div>
-      </main>
+      <main className="flex flex-col min-h-screen px-4 py-6 md:px-20 md:py-0 md:flex-row"></main>
     </>
   );
 }
