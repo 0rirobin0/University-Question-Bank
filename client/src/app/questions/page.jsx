@@ -25,6 +25,7 @@ import { SelectUniversity } from "@/components/ui/SelectUniversity";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import FilterYears from "@/components/ui/FilterYears";
+import QuestionsTable from "@/components/ui/QuestionsTable";
 import { toast } from "sonner";
 
 export default function Page() {
@@ -169,7 +170,10 @@ export default function Page() {
         </div>
         {/* Right */}
 
-        <div className="right w-screen md:w-[80vw] h-[80vh] border-2"></div>
+        <div className="right  w-screen md:w-[80vw] h-[80vh] border-2 overflow-auto">
+          {/* Data Table */}
+          <QuestionsTable />
+        </div>
       </main>
     </>
   );
