@@ -28,7 +28,7 @@ export default function Home() {
   return (
     <>
       <div className="h-[50px] w-full flex justify-end items-center p-10">
-        <UploadQuestionsButton className="" />
+        <UploadQuestionsButton  />
       </div>
       <main className="flex flex-col min-h-screen px-4 py-6 md:px-20 md:py-0 md:flex-row">
         {/* LeftSide */}

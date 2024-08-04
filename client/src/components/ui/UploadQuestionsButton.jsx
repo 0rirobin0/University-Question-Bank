@@ -9,7 +9,6 @@ export default function UploadQuestionsButton() {
         href="/uploadquestions"
         className={buttonVariants({
           variant: "outlinered",
-          size: "lg",
         })}
       >
         Upload Questions
