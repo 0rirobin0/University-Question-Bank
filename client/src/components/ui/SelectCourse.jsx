@@ -1085,7 +1085,7 @@ export function SelectCourse() {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-full sm:w-[300px] md:w-[400px]  mx-auto justify-between focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
+          className="w-full overflow-hidden sm:w-[300px] md:w-[400px]  mx-auto justify-between focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
         >
           {selectedValue
             ? courses.find((course) => course.value === selectedValue)?.label

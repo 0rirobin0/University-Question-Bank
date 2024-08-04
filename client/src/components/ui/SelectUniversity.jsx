@@ -167,7 +167,7 @@ export function SelectUniversity() {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-full sm:w-[300px] md:w-[400px] mx-auto justify-between focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
+          className="w-full  overflow-hidden sm:w-[300px] md:w-[400px] mx-auto justify-between focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
         >
           {selectedValue
             ? universities.find(
@@ -179,10 +179,13 @@ export function SelectUniversity() {
       </PopoverTrigger>
       <PopoverContent className="w-[400px]  p-0">
         <Command>
-          <CommandInput placeholder="Search university..." className="h-9" />
+          <CommandInput
+            placeholder="Search university..."
+            className="h-9 text-ellipsis"
+          />
           <CommandEmpty>No university found.</CommandEmpty>
           <CommandGroup>
-            <CommandList overflow-hidden>
+            <CommandList>
               {universities.map((university) => (
                 <CommandItem
                   key={university.value}

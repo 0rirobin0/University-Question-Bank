@@ -1,10 +1,12 @@
 "use client";
+import { ReloadIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import homeImage from "../../public/images/home.jpg";
 import { GlobalContext } from "../globalcontext/globalcontext";
+
 // shadcn UI
 
 import {
@@ -21,14 +23,17 @@ import { SelectCourse } from "@/components/ui/SelectCourse";
 import { SelectDepartment } from "@/components/ui/SelectDepartment";
 import { SelectUniversity } from "@/components/ui/SelectUniversity";
 import UploadQuestionsButton from "@/components/ui/UploadQuestionsButton";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   const { msg, setmsg } = useContext(GlobalContext);
+  const [isloading, SetLoading] = useState(false);
 
   return (
+    
     <>
       <div className="h-[50px] w-full flex justify-end items-center p-10">
-        <UploadQuestionsButton  />
+        <UploadQuestionsButton />
       </div>
       <main className="flex flex-col min-h-screen px-4 py-6 md:px-20 md:py-0 md:flex-row">
         {/* LeftSide */}
@@ -80,15 +85,21 @@ export default function Home() {
               <SelectCourse />
             </CardContent>
             <CardFooter className="flex justify-center md:justify-center">
-              <Link
-                href="/questions"
-                className={buttonVariants({
-                  variant: "secondarygreen",
-                  size: "lg",
-                })}
-              >
-                Find Questions
-              </Link>
+              {isloading ? (
+                <Button disabled>
+                  <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+                  Please wait
+                </Button>
+              ) : (
+                <Link
+                  href="/questions"
+                  className={buttonVariants({
+                    variant: "secondarygreen",
+                  })}
+                >
+                  Find Questions
+                </Link>
+              )}
             </CardFooter>
           </Card>
         </div>

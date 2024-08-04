@@ -37,7 +37,7 @@ export default function Page() {
 
   return (
     <>
-      <div className="headsection w-full h-[140px] border-2">
+      <div className="headsection w-full  h-[20vh] border-2">
         <div className="flex justify-between items-center px-4 my-1">
           {/* Icons for mobile view */}
           <div className="md:hidden flex items-center space-x-2">
@@ -123,7 +123,7 @@ export default function Page() {
             <LiaExchangeAltSolid className="mx-2 text-xl font-bold" />
           </div>
 
-          <div className="selection hidden md:flex justify-center my-2">
+          <div className="selection hidden md:flex justify-center mb-3">
             <SelectUniversity />
             <SelectDepartment />
             <SelectCourse />
@@ -170,7 +170,7 @@ export default function Page() {
         </div>
         {/* Right */}
 
-        <div className="right  w-screen md:w-[80vw] h-[80vh] border-2 overflow-auto">
+        <div className="right  w-full   md:w-[80vw] md:h-[80vh] border-2 ">
           {/* Data Table */}
           <QuestionsTable />
         </div>

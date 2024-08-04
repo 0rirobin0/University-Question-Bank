@@ -19,24 +19,10 @@ export default function QuestionsTable() {
   ));
 
   return (
-    <div>
-      {/* <div className="TableHeading  w-full px-8 h-[40px]  bg-primary  border-3 flex justify-between px-auto items-center ">
-        <div className="w-1/4 h-[40px] flex justify-center items-center px-auto text-background">
-          Title
-        </div>
-        <div className="w-1/4 h-[40px] flex justify-center items-center px-auto text-background">
-          Title
-        </div>
-        <div className="w-1/4 h-[40px] flex justify-center items-center px-auto text-background">
-          Title
-        </div>
-        <div className="w-1/4 h-[40px] flex justify-center items-center px-auto text-background">
-          Title
-        </div>
-      </div> */}
+    <div className="overflow-y-auto max-h-[75vh]">
       <Table>
-        <TableCaption>A list of your recent invoices.</TableCaption>
-        <TableHeader className="">
+        <TableCaption>No more Questions</TableCaption>
+        <TableHeader className="sticky top-0 bg-white z-10">
           <TableRow>
             <TableHead className="text-center">Title</TableHead>
             <TableHead className="text-center">Type</TableHead>
