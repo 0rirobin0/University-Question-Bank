@@ -149,7 +149,28 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <main className="flex flex-col min-h-screen px-4 py-6 md:px-20 md:py-0 md:flex-row"></main>
+      <main className="flex w-full h-[80vh]  ">
+        {/* left */}
+
+        <div className="left hidden  w-0 md:w-[20vw] h-[80vh] md:flex flex-col items-center border-2  ">
+          <div className="flex justify-start my-5 mx-6 hidden md:flex">
+            <h3 className="font-bold text-primary">FILTERS</h3>
+            <CiFilter className="mx-2 text-xl font-bold" />
+          </div>
+          <div className="text-center font-bold text-sm my-2  w-full h-auto bg-primary-foreground">
+            TYPES
+          </div>
+          <FilterTypes />
+
+          <div className="text-center font-bold text-sm my-2  w-full h-auto bg-primary-foreground">
+            YEARS
+          </div>
+          <FilterYears />
+        </div>
+        {/* Right */}
+
+        <div className="right w-screen md:w-[80vw] h-[80vh] border-2"></div>
+      </main>
     </>
   );
 }
