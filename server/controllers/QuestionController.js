@@ -14,7 +14,7 @@ const buildQuery = (params) => {
    }
  
    if (params.SelectedCourse) {
-     query.course = params.SelectedDepartment;
+     query.course = params.SelectedCourse;
    }
  
    return query;

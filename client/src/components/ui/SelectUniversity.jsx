@@ -2,7 +2,7 @@
 
 import { GlobalContext } from "@/globalcontext/globalcontext";
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
-import React, { useContext } from "react";
+import React, { useContext ,useState ,useEffect} from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -146,23 +146,28 @@ function fetchUniversities() {
 }
 
 export function SelectUniversity() {
-  const [open, setOpen] = React.useState(false);
-  const [universities, setUniversities] = React.useState([]);
+  const [open, setOpen] = useState(false);
+  const [universities, setUniversities] = useState([]);
+  const { SelectedUniversity, setSelectedUniversity } = useContext(GlobalContext);
 
-  const { SelectedUniversity, setSelectedUniversity } =
-    useContext(GlobalContext); //GlobalContext
-
-  // Fetch universities on component mount (or when necessary)
-  React.useEffect(() => {
+  // Fetch universities on component mount
+  useEffect(() => {
     const fetchedUniversities = fetchUniversities();
     setUniversities(fetchedUniversities);
-  }, []);
 
+    // Initialize state from sessionStorage if available
+    const sessionUniversity = sessionStorage.getItem("SelectedUniversity");
+    if (sessionUniversity) {
+      setSelectedUniversity(sessionUniversity);
+    }
+  }, [setSelectedUniversity]);
+
+  // Handle university selection
   const handleSelect = (currentValue) => {
     setOpen(false);
-    setSelectedUniversity(
-      currentValue === SelectedUniversity ? "" : currentValue
-    );
+    const newValue = currentValue === SelectedUniversity ? "" : currentValue;
+    setSelectedUniversity(newValue);
+    sessionStorage.setItem("SelectedUniversity", newValue);
   };
 
   return (

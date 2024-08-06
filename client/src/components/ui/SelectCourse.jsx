@@ -1073,10 +1073,18 @@ export function SelectCourse() {
   React.useEffect(() => {
     const fetchedCourses = fetchCourses();
     setCourses(fetchedCourses);
-  }, []);
+
+    // Initialize state from sessionStorage if available
+    const sessionCourse = sessionStorage.getItem("SelectedCourse");
+    if (sessionCourse) {
+      setSelectedCourse(sessionCourse);
+    }
+  }, [setSelectedCourse]);
 
   const handleSelect = (currentValue) => {
-    setSelectedCourse(currentValue === SelectedCourse ? "" : currentValue);
+    const newValue = currentValue === SelectedCourse ? "" : currentValue;
+    setSelectedCourse(newValue);
+    sessionStorage.setItem("SelectedCourse", newValue); // Update sessionStorage
     setOpen(false);
   };
 

@@ -1,13 +1,31 @@
 "use client";
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 const GlobalContext = createContext();
 
 const GlobalProvider = ({ children }) => {
-  const [msg, setmsg] = useState("Hello, world!");
-  const [SelectedUniversity, setSelectedUniversity] = useState("");
-  const [SelectedDepartment, setSelectedDepartment] = useState("");
-  const [SelectedCourse, setSelectedCourse] = useState("");
+  // Initialize state from sessionStorage or set default values
+  const [msg, setmsg] = useState(() => sessionStorage.getItem("msg") || "Hello, world!");
+  const [SelectedUniversity, setSelectedUniversity] = useState(() => sessionStorage.getItem("SelectedUniversity") || "");
+  const [SelectedDepartment, setSelectedDepartment] = useState(() => sessionStorage.getItem("SelectedDepartment") || "");
+  const [SelectedCourse, setSelectedCourse] = useState(() => sessionStorage.getItem("SelectedCourse") || "");
+
+  // Update sessionStorage whenever state changes
+  useEffect(() => {
+    sessionStorage.setItem("msg", msg);
+  }, [msg]);
+
+  useEffect(() => {
+    sessionStorage.setItem("SelectedUniversity", SelectedUniversity);
+  }, [SelectedUniversity]);
+
+  useEffect(() => {
+    sessionStorage.setItem("SelectedDepartment", SelectedDepartment);
+  }, [SelectedDepartment]);
+
+  useEffect(() => {
+    sessionStorage.setItem("SelectedCourse", SelectedCourse);
+  }, [SelectedCourse]);
 
   return (
     <GlobalContext.Provider
