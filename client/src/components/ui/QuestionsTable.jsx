@@ -7,20 +7,30 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { GlobalContext } from "@/globalcontext/globalcontext";
 import axios from "axios";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 export default function QuestionsTable() {
   const [questionData, setQuestionData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { SelectedUniversity, SelectedDepartment, SelectedCourse } =
+    useContext(GlobalContext);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/question`
+          `${process.env.NEXT_PUBLIC_API_URL}/question/filtered`,
+          {
+            params: {
+              SelectedUniversity,
+              SelectedDepartment,
+              SelectedCourse,
+            },
+          }
         );
         setQuestionData(response.data);
       } catch (error) {
@@ -30,7 +40,7 @@ export default function QuestionsTable() {
       }
     };
     fetchData();
-  }, []);
+  }, [SelectedUniversity, SelectedDepartment, SelectedCourse]);
 
   console.log(questionData);
 

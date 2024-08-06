@@ -1,10 +1,29 @@
 const mongoose = require('mongoose');
 const Question = require('../models/QuestionModel');
 
+// function to handle question filter
+const buildQuery = (params) => {
+   const query = {};
+ 
+   if (params.SelectedUniversity) {
+     query.university = params.SelectedUniversity;
+   }
+ 
+   if (params.SelectedDepartment) {
+     query.department = params.SelectedDepartment;
+   }
+ 
+   if (params.SelectedCourse) {
+     query.course = params.SelectedDepartment;
+   }
+ 
+   return query;
+ };
 
 exports.UploadQuestion=async(req,res)=>
 {
  const data= req.body;
+
  try {
     const que = new Question(data);
     await que.save();
@@ -18,9 +37,12 @@ exports.UploadQuestion=async(req,res)=>
 
 }  
 
+
+
 exports.GetAllQuestion = async(req,res)=>
     {
-    
+      
+       
      try {
         const data = await Question.find();
         res.status(200).json(data);
@@ -32,6 +54,25 @@ exports.GetAllQuestion = async(req,res)=>
     
     
     }  
+
+exports.GetFilteredQuestion = async (req,res)=>
+{
+    
+   const params = req.query;
+   console.log(params);
+   
+   const query = buildQuery(params);
+
+   try {
+      const data = await Question.find(query);
+      res.status(200).json(data);
+   } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server error : Question Find failed' });
+   }
+}
+
+
 
 exports.GetQuestionbyID = async(req,res)=>
         {
