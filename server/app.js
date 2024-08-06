@@ -30,6 +30,10 @@ app.use(cors(corsOptions));
 
 // Routes
 app.use('/question',QuestionRoute);
+app.use('resources',(req,res)=>
+{
+  res.status(200);
+});
 
 
 
