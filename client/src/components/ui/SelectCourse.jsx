@@ -1,7 +1,9 @@
 "use client";
 
+import { GlobalContext } from "@/globalcontext/globalcontext";
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 import * as React from "react";
+import { useContext } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -1065,7 +1067,7 @@ function fetchCourses() {
 export function SelectCourse() {
   const [open, setOpen] = React.useState(false);
   const [courses, setCourses] = React.useState([]);
-  const [selectedValue, setSelectedValue] = React.useState("");
+  const { SelectedCourse, setSelectedCourse } = useContext(GlobalContext);
 
   // Fetch courses on component mount (or when necessary)
   React.useEffect(() => {
@@ -1074,7 +1076,7 @@ export function SelectCourse() {
   }, []);
 
   const handleSelect = (currentValue) => {
-    setSelectedValue(currentValue === selectedValue ? "" : currentValue);
+    setSelectedCourse(currentValue === SelectedCourse ? "" : currentValue);
     setOpen(false);
   };
 
@@ -1087,9 +1089,9 @@ export function SelectCourse() {
           aria-expanded={open}
           className="w-full overflow-hidden sm:w-[300px] md:w-[400px]  mx-auto justify-between focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
         >
-          {selectedValue
-            ? courses.find((course) => course.value === selectedValue)?.label
-            : "Select course"}
+          {SelectedCourse
+            ? courses.find((course) => course.value === SelectedCourse)?.label
+            : "Select Course"}
           <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -1113,7 +1115,7 @@ export function SelectCourse() {
                   <CheckIcon
                     className={cn(
                       "ml-auto h-4 w-4 ",
-                      selectedValue === course.value
+                      SelectedCourse === course.value
                         ? "opacity-100"
                         : "opacity-0"
                     )}

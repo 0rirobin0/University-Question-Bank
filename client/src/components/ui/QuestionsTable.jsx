@@ -7,16 +7,32 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import axios from "axios";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function QuestionsTable() {
-  const rows = Array.from({ length: 1000 }, (_, i) => (
-    <TableRow key={i}>
-      <TableCell className="font-medium text-center">DataStructute</TableCell>
-      <TableCell className="text-center">Semester</TableCell>
-      <TableCell className="text-center">2023</TableCell>
-      <TableCell className="text-center text-sky">Click Here</TableCell>
-    </TableRow>
-  ));
+  const [questionData, setQuestionData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/question`
+        );
+        setQuestionData(response.data);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  console.log(questionData);
 
   return (
     <div className="overflow-y-auto max-h-[75vh]">
@@ -32,14 +48,18 @@ export default function QuestionsTable() {
         </TableHeader>
 
         <TableBody>
-          {/* <TableRow> */}
-          {/* <TableCell className="font-medium text-center ">INV001</TableCell>
-            <TableCell className="text-center">Paid</TableCell>
-            <TableCell className="text-center">Credit Card</TableCell>
-            <TableCell className="text-center">$250.00</TableCell> */}
-
-          {rows}
-          {/* </TableRow> */}
+          {questionData.map((question) => (
+            <TableRow key={question._id}>
+              <TableCell className="font-medium text-center">
+                {question.title}
+              </TableCell>
+              <TableCell className="text-center">{question.type}</TableCell>
+              <TableCell className="text-center">{question.year}</TableCell>
+              <TableCell className="text-center">
+                <Link href={question.link}>click here</Link>
+              </TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </div>

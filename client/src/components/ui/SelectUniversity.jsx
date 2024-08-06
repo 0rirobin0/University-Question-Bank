@@ -1,7 +1,8 @@
 "use client";
 
+import { GlobalContext } from "@/globalcontext/globalcontext";
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
-import * as React from "react";
+import React, { useContext } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -147,7 +148,9 @@ function fetchUniversities() {
 export function SelectUniversity() {
   const [open, setOpen] = React.useState(false);
   const [universities, setUniversities] = React.useState([]);
-  const [selectedValue, setSelectedValue] = React.useState("");
+
+  const { SelectedUniversity, setSelectedUniversity } =
+    useContext(GlobalContext); //GlobalContext
 
   // Fetch universities on component mount (or when necessary)
   React.useEffect(() => {
@@ -156,8 +159,10 @@ export function SelectUniversity() {
   }, []);
 
   const handleSelect = (currentValue) => {
-    setSelectedValue(currentValue === selectedValue ? "" : currentValue);
     setOpen(false);
+    setSelectedUniversity(
+      currentValue === SelectedUniversity ? "" : currentValue
+    );
   };
 
   return (
@@ -169,11 +174,11 @@ export function SelectUniversity() {
           aria-expanded={open}
           className="w-full  overflow-hidden sm:w-[300px] md:w-[400px] mx-auto justify-between focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
         >
-          {selectedValue
+          {SelectedUniversity
             ? universities.find(
-                (university) => university.value === selectedValue
+                (university) => university.value === SelectedUniversity
               )?.label
-            : "Select university"}
+            : "Select University"}
           <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -200,7 +205,7 @@ export function SelectUniversity() {
                   <CheckIcon
                     className={cn(
                       "ml-auto h-4 w-4",
-                      selectedValue === university.value
+                      SelectedUniversity === university.value
                         ? "opacity-100"
                         : "opacity-0"
                     )}

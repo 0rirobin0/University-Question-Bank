@@ -2,6 +2,8 @@
 
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 import * as React from "react";
+import { useContext } from "react";
+import { GlobalContext } from "@/globalcontext/globalcontext";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -18,6 +20,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
+
 
 // Replace with your actual department data fetching logic
 function fetchDepartments() {
@@ -143,7 +146,9 @@ function fetchDepartments() {
 export function SelectDepartment() {
   const [open, setOpen] = React.useState(false);
   const [departments, setDepartments] = React.useState([]);
-  const [selectedValue, setSelectedValue] = React.useState("");
+ 
+  const { SelectedDepartment, setSelectedDepartment } =
+  useContext(GlobalContext); //GlobalContext
 
   // Fetch departments on component mount (or when necessary)
   React.useEffect(() => {
@@ -152,7 +157,7 @@ export function SelectDepartment() {
   }, []);
 
   const handleSelect = (currentValue) => {
-    setSelectedValue(currentValue === selectedValue ? "" : currentValue);
+    setSelectedDepartment(currentValue === SelectedDepartment ? "" : currentValue);
     setOpen(false);
   };
 
@@ -165,11 +170,11 @@ export function SelectDepartment() {
           aria-expanded={open}
           className="w-full overflow-hidden sm:w-[300px] md:w-[400px] mx-auto  justify-between focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
         >
-          {selectedValue
+          {SelectedDepartment
             ? departments.find(
-                (department) => department.value === selectedValue
+                (department) => department.value === SelectedDepartment
               )?.label
-            : "Select department"}
+            : "Select Department"}
           <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -193,7 +198,7 @@ export function SelectDepartment() {
                   <CheckIcon
                     className={cn(
                       "ml-auto h-4 w-4",
-                      selectedValue === department.value
+                      SelectedDepartment === department.value
                         ? "opacity-100"
                         : "opacity-0"
                     )}
