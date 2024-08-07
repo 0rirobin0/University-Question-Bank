@@ -169,9 +169,9 @@ export default function Page() {
                       </CardContent>
                       <CardFooter className="flex justify-center md:justify-center">
                         {
-                          <Button variant="secondarygreen">
-                            Modify Search
-                          </Button>
+                          // <Button variant="secondarygreen">
+                          //   Modify Search
+                          // </Button>
                         }
                       </CardFooter>
                     </Card>
