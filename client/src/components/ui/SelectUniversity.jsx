@@ -1,5 +1,3 @@
-"use client";
-
 import { GlobalContext } from "@/globalcontext/globalcontext";
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 import { useContext, useEffect, useState } from "react";

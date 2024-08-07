@@ -24,7 +24,7 @@ import { SelectUniversity } from "@/components/ui/SelectUniversity";
 import UploadQuestionsButton from "@/components/ui/UploadQuestionsButton";
 
 export default function Home() {
-  const { msg, setmsg } = useContext(GlobalContext);
+ 
 
   return (
     <>

@@ -1,9 +1,7 @@
-"use client";
-
+import { GlobalContext } from "@/globalcontext/globalcontext";
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 import * as React from "react";
 import { useContext } from "react";
-import { GlobalContext } from "@/globalcontext/globalcontext";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -20,7 +18,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-
 
 // Replace with your actual department data fetching logic
 function fetchDepartments() {
@@ -146,28 +143,29 @@ function fetchDepartments() {
 export function SelectDepartment() {
   const [open, setOpen] = React.useState(false);
   const [departments, setDepartments] = React.useState([]);
-  
-  const { SelectedDepartment, setSelectedDepartment } = useContext(GlobalContext); //GlobalContext
-  
+
+  const { SelectedDepartment, setSelectedDepartment } =
+    useContext(GlobalContext); //GlobalContext
+
   // Fetch departments on component mount (or when necessary)
   React.useEffect(() => {
     const fetchedDepartments = fetchDepartments();
     setDepartments(fetchedDepartments);
-  
+
     // Initialize state from sessionStorage if available
     const sessionDepartment = sessionStorage.getItem("SelectedDepartment");
     if (sessionDepartment) {
       setSelectedDepartment(sessionDepartment);
     }
   }, [setSelectedDepartment]);
-  
+
   const handleSelect = (currentValue) => {
     const newValue = currentValue === SelectedDepartment ? "" : currentValue;
     setSelectedDepartment(newValue);
     sessionStorage.setItem("SelectedDepartment", newValue); // Update sessionStorage
     setOpen(false);
   };
-  
+
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>

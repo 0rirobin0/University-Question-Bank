@@ -1,4 +1,5 @@
 "use client";
+
 import UploadQuestionsButton from "@/components/ui/UploadQuestionsButton";
 import { GlobalContext } from "@/globalcontext/globalcontext";
 import Link from "next/link";
@@ -16,7 +17,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -167,13 +167,6 @@ export default function Page() {
                         <span className="my-2"></span>
                         <SelectCourse />
                       </CardContent>
-                      <CardFooter className="flex justify-center md:justify-center">
-                        {
-                          // <Button variant="secondarygreen">
-                          //   Modify Search
-                          // </Button>
-                        }
-                      </CardFooter>
                     </Card>
                   </DialogDescription>
                 </DialogHeader>

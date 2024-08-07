@@ -1,24 +1,28 @@
 "use client";
-import { createContext, useState, useEffect } from "react";
+import { createContext, useEffect, useState } from "react";
 
 const GlobalContext = createContext();
 
 const GlobalProvider = ({ children }) => {
-  // Initialize state from sessionStorage or set default values
-  const [msg, setmsg] = useState(() => sessionStorage.getItem("msg") || "Hello, world!");
-  const [SelectedUniversity, setSelectedUniversity] = useState(() => sessionStorage.getItem("SelectedUniversity") || "");
-  const [SelectedDepartment, setSelectedDepartment] = useState(() => sessionStorage.getItem("SelectedDepartment") || "");
-  const [SelectedCourse, setSelectedCourse] = useState(() => sessionStorage.getItem("SelectedCourse") || "");
-  const [SelectedType, setSelectedType] = useState(() => sessionStorage.getItem("SelectedType") || "");
-  const [SelectedYear, setSelectedYear] = useState(() => sessionStorage.getItem("SelectedYear") || "");
+  const [SelectedUniversity, setSelectedUniversity] = useState("");
+  const [SelectedDepartment, setSelectedDepartment] = useState("");
+  const [SelectedCourse, setSelectedCourse] = useState("");
+  const [SelectedType, setSelectedType] = useState("");
+  const [SelectedYear, setSelectedYear] = useState("");
   const [loading, setLoading] = useState(true);
 
-  // Update sessionStorage whenever state changes
   useEffect(() => {
-    sessionStorage.setItem("msg", msg);
-  }, [msg]);
+    // Load initial state from sessionStorage on client side
+    setSelectedUniversity(sessionStorage.getItem("SelectedUniversity") || "");
+    setSelectedDepartment(sessionStorage.getItem("SelectedDepartment") || "");
+    setSelectedCourse(sessionStorage.getItem("SelectedCourse") || "");
+    setSelectedType(sessionStorage.getItem("SelectedType") || "");
+    setSelectedYear(sessionStorage.getItem("SelectedYear") || "");
+    setLoading(false); // Assuming loading is false after initial state is set
+  }, []);
 
   useEffect(() => {
+    // Update sessionStorage whenever state changes
     sessionStorage.setItem("SelectedUniversity", SelectedUniversity);
   }, [SelectedUniversity]);
 
@@ -41,8 +45,6 @@ const GlobalProvider = ({ children }) => {
   return (
     <GlobalContext.Provider
       value={{
-        msg,
-        setmsg,
         SelectedUniversity,
         setSelectedUniversity,
         SelectedDepartment,
@@ -54,7 +56,7 @@ const GlobalProvider = ({ children }) => {
         SelectedYear,
         setSelectedYear,
         loading,
-         setLoading
+        setLoading,
       }}
     >
       {children}

@@ -43,9 +43,19 @@ export default function QuestionsTable() {
     fetchData();
   }, [SelectedUniversity, SelectedDepartment, SelectedCourse]);
 
-  // filter Data
+  // Handle state initialization from sessionStorage
+  const [selectedUniversity, setSelectedUniversity] = useState("");
+  const [selectedDepartment, setSelectedDepartment] = useState("");
 
-  const selectedYearNumber = SelectedYear ? Number(SelectedYear) : null; // Convert SelectedYear to a number or set to null
+  useEffect(() => {
+    const storedUniversity = sessionStorage.getItem("SelectedUniversity") || "";
+    const storedDepartment = sessionStorage.getItem("SelectedDepartment") || "";
+    setSelectedUniversity(storedUniversity);
+    setSelectedDepartment(storedDepartment);
+  }, []);
+
+  // filter Data
+  const selectedYearNumber = SelectedYear ? Number(SelectedYear) : null;
 
   const filteredData = questionData.filter((question) => {
     if (SelectedType && selectedYearNumber) {
@@ -59,9 +69,11 @@ export default function QuestionsTable() {
     if (selectedYearNumber) {
       return question.year === selectedYearNumber;
     }
-    return true; // If both are null, return all questions
+    return true;
   });
+
   console.log(filteredData);
+  console.log("all data : " + questionData);
 
   return (
     <div className="overflow-y-auto max-h-[75vh]">
@@ -101,7 +113,7 @@ export default function QuestionsTable() {
           <div role="status">
             <svg
               aria-hidden="true"
-              class="inline w-12 h-12 text-gray-200 animate-spin dark:text-gray-600 fill-green-500"
+              className="inline w-12 h-12 text-gray-200 animate-spin dark:text-gray-600 fill-green-500"
               viewBox="0 0 100 101"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -115,7 +127,7 @@ export default function QuestionsTable() {
                 fill="currentFill"
               />
             </svg>
-            <span class="sr-only">Loading...</span>
+            <span className="sr-only">Loading...</span>
           </div>
         </div>
       )}
