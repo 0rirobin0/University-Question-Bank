@@ -1,9 +1,13 @@
 "use client";
 import UploadQuestionsButton from "@/components/ui/UploadQuestionsButton";
+import { GlobalContext } from "@/globalcontext/globalcontext";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useContext } from "react";
 import { CiFilter, CiSearch } from "react-icons/ci";
+
 import { IoIosArrowBack, IoIosMenu } from "react-icons/io";
+import { IoBackspaceOutline } from "react-icons/io5";
 import { LiaExchangeAltSolid } from "react-icons/lia";
 
 // shadcn
@@ -29,15 +33,36 @@ import QuestionsTable from "@/components/ui/QuestionsTable";
 import { toast } from "sonner";
 
 export default function Page() {
+  const {
+    setSelectedUniversity,
+    setSelectedDepartment,
+    setSelectedCourse,
+    setSelectedType,
+    setSelectedYear,
+  } = useContext(GlobalContext);
+
   const router = useRouter();
 
   const showtoast = () => {
     toast("Question has been created.");
   };
+  const handledeselect = () => {
+    setSelectedUniversity("");
+    setSelectedDepartment("");
+    setSelectedCourse("");
+    setSelectedType("");
+    setSelectedYear("");
+
+    sessionStorage.removeItem("SelectedUniversity");
+    sessionStorage.removeItem("SelectedCourse");
+    sessionStorage.removeItem("SelectedDepartment");
+    sessionStorage.removeItem("SelectedType");
+    sessionStorage.removeItem("SelectedYear");
+  };
 
   return (
     <>
-      <div className="headsection w-full  h-[20vh] border-2">
+      <div className="headsection w-full  h-[20vh] ">
         <div className="flex justify-between items-center px-4 my-1">
           {/* Icons for mobile view */}
           <div className="md:hidden flex items-center space-x-2">
@@ -118,12 +143,21 @@ export default function Page() {
         {/* Selection section hidden on mobile */}
         <div className="modify flex flex-col">
           {/* Head tag modify */}
-          <div className="flex justify-start mx-6 hidden md:flex px-10 mb-1 ">
+          <div className="flex justify-start items-center mx-6 hidden md:flex px-10 mb-1 ">
             <h3 className="font-bold text-primary">MODIFY SEARCH</h3>
             <LiaExchangeAltSolid className="mx-2 text-xl font-bold" />
+            <Button
+              variant="outline"
+              size="sm"
+              className="mb-1"
+              onClick={handledeselect}
+            >
+              Clear
+              <IoBackspaceOutline className="mx-2 text-destructive text-xl font-bold" />{" "}
+            </Button>
           </div>
 
-          <div className="selection hidden md:flex justify-center mb-3">
+          <div className="selection hidden md:flex justify-center ">
             <SelectUniversity />
             <SelectDepartment />
             <SelectCourse />
@@ -150,7 +184,7 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <main className="flex w-full h-[80vh]  ">
+      <main className="flex w-full h-[80vh] mt-2 ">
         {/* left */}
 
         <div className="left hidden  w-0 md:w-[20vw] h-[80vh] md:flex flex-col items-center border-2  ">

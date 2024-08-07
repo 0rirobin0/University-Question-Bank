@@ -9,6 +9,8 @@ const GlobalProvider = ({ children }) => {
   const [SelectedUniversity, setSelectedUniversity] = useState(() => sessionStorage.getItem("SelectedUniversity") || "");
   const [SelectedDepartment, setSelectedDepartment] = useState(() => sessionStorage.getItem("SelectedDepartment") || "");
   const [SelectedCourse, setSelectedCourse] = useState(() => sessionStorage.getItem("SelectedCourse") || "");
+  const [SelectedType, setSelectedType] = useState(() => sessionStorage.getItem("SelectedType") || "");
+  const [SelectedYear, setSelectedYear] = useState(() => sessionStorage.getItem("SelectedYear") || "");
 
   // Update sessionStorage whenever state changes
   useEffect(() => {
@@ -27,6 +29,14 @@ const GlobalProvider = ({ children }) => {
     sessionStorage.setItem("SelectedCourse", SelectedCourse);
   }, [SelectedCourse]);
 
+  useEffect(() => {
+    sessionStorage.setItem("SelectedType", SelectedType);
+  }, [SelectedType]);
+
+  useEffect(() => {
+    sessionStorage.setItem("SelectedYear", SelectedYear);
+  }, [SelectedYear]);
+
   return (
     <GlobalContext.Provider
       value={{
@@ -38,6 +48,10 @@ const GlobalProvider = ({ children }) => {
         setSelectedDepartment,
         SelectedCourse,
         setSelectedCourse,
+        SelectedType,
+        setSelectedType,
+        SelectedYear,
+        setSelectedYear,
       }}
     >
       {children}

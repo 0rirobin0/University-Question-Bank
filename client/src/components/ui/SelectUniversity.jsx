@@ -2,7 +2,8 @@
 
 import { GlobalContext } from "@/globalcontext/globalcontext";
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
-import React, { useContext ,useState ,useEffect} from "react";
+import { useContext, useEffect, useState } from "react";
+import { IoIosClose } from "react-icons/io";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -148,7 +149,8 @@ function fetchUniversities() {
 export function SelectUniversity() {
   const [open, setOpen] = useState(false);
   const [universities, setUniversities] = useState([]);
-  const { SelectedUniversity, setSelectedUniversity } = useContext(GlobalContext);
+  const { SelectedUniversity, setSelectedUniversity } =
+    useContext(GlobalContext);
 
   // Fetch universities on component mount
   useEffect(() => {
@@ -179,18 +181,21 @@ export function SelectUniversity() {
           aria-expanded={open}
           className="w-full  overflow-hidden sm:w-[300px] md:w-[400px] mx-auto justify-between focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
         >
+          {/* close Button */}
+          {/* <IoIosClose className={cn("ml-auto h-4 w-4")} /> */}
           {SelectedUniversity
             ? universities.find(
                 (university) => university.value === SelectedUniversity
               )?.label
             : "Select University"}
+
           <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[400px]  p-0">
         <Command>
           <CommandInput
-            placeholder="Search university..."
+            placeholder="Search university"
             className="h-9 text-ellipsis"
           />
           <CommandEmpty>No university found.</CommandEmpty>

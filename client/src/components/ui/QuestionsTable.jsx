@@ -18,6 +18,7 @@ export default function QuestionsTable() {
   const [error, setError] = useState(null);
   const { SelectedUniversity, SelectedDepartment, SelectedCourse } =
     useContext(GlobalContext);
+  const { SelectedType, SelectedYear } = useContext(GlobalContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,7 +43,26 @@ export default function QuestionsTable() {
     fetchData();
   }, [SelectedUniversity, SelectedDepartment, SelectedCourse]);
 
-  console.log(questionData);
+
+ 
+
+  // filter Data
+
+  const selectedYearNumber = SelectedYear ? Number(SelectedYear) : null; // Convert SelectedYear to a number or set to null
+
+  const filteredData = questionData.filter((question) => {
+    if (SelectedType && selectedYearNumber) {
+      return question.type === SelectedType && question.year === selectedYearNumber;
+    }
+    if (SelectedType) {
+      return question.type === SelectedType;
+    }
+    if (selectedYearNumber) {
+      return question.year === selectedYearNumber;
+    }
+    return true; // If both are null, return all questions
+  });
+  console.log(filteredData);
 
   return (
     <div className="overflow-y-auto max-h-[75vh]">
@@ -52,24 +72,27 @@ export default function QuestionsTable() {
           <TableRow>
             <TableHead className="text-center">Title</TableHead>
             <TableHead className="text-center">Type</TableHead>
+            <TableHead className="text-center">University</TableHead>
             <TableHead className="text-center">Year</TableHead>
             <TableHead className="text-center">Link</TableHead>
           </TableRow>
         </TableHeader>
 
         <TableBody>
-          {questionData.map((question) => (
-            <TableRow key={question._id}>
-              <TableCell className="font-medium text-center">
-                {question.title}
-              </TableCell>
-              <TableCell className="text-center">{question.type}</TableCell>
-              <TableCell className="text-center">{question.year}</TableCell>
-              <TableCell className="text-center">
-                <Link href={question.link}>click here</Link>
-              </TableCell>
-            </TableRow>
-          ))}
+        {
+        filteredData.map((question) => (
+          <TableRow key={question._id}>
+            <TableCell className="font-medium text-center">{question.title}</TableCell>
+            <TableCell className="text-center">{question.type}</TableCell>
+            <TableCell className="text-center">{question.university}</TableCell>
+            <TableCell className="text-center">{question.year}</TableCell>
+            <TableCell className="text-center">
+              <Link href={question.link}>click here</Link>
+            </TableCell>
+          </TableRow>
+        ))
+      }
+      
         </TableBody>
       </Table>
     </div>
