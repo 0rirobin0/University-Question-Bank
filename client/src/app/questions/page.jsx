@@ -13,6 +13,29 @@ import { LiaExchangeAltSolid } from "react-icons/lia";
 // shadcn
 import { Button } from "@/components/ui/button";
 import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+import {
   Drawer,
   DrawerClose,
   DrawerContent,
@@ -43,27 +66,38 @@ export default function Page() {
 
   const router = useRouter();
 
-  const showtoast = () => {
-    toast("Question has been created.");
+  const SearchdeselectToast = () => {
+    toast("Search has been Cleared !", {
+      duration: 2000,
+      variant: "primary",
+    });
+  };
+
+  const FilterdeselectToast = () => {
+    toast("Filter has been Cleared! ", { duration: 2000 });
   };
   const handledeselect = () => {
     setSelectedUniversity("");
     setSelectedDepartment("");
     setSelectedCourse("");
-    setSelectedType("");
-    setSelectedYear("");
 
     sessionStorage.removeItem("SelectedUniversity");
     sessionStorage.removeItem("SelectedCourse");
     sessionStorage.removeItem("SelectedDepartment");
+    SearchdeselectToast();
+  };
+  const handledFilterdeselect = () => {
     sessionStorage.removeItem("SelectedType");
     sessionStorage.removeItem("SelectedYear");
+    setSelectedType("");
+    setSelectedYear("");
+    FilterdeselectToast();
   };
 
   return (
     <>
       <div className="headsection w-full  h-[20vh] ">
-        <div className="flex justify-between items-center px-4 my-1">
+        <div className="flex justify-between items-center px-4 my-1 ">
           {/* Icons for mobile view */}
           <div className="md:hidden flex items-center space-x-2">
             <div>
@@ -106,10 +140,45 @@ export default function Page() {
                 </DrawerContent>
               </Drawer>
             </div>
-            <CiSearch
-              className="text-black-500 text-4xl hover:text-primary "
-              onClick={() => router.push("/")}
-            />
+            {/* Dialog box to modify Search in MobileScreen */}
+            <Dialog>
+              <DialogTrigger>
+                <CiSearch className="text-black-500 text-4xl hover:text-primary " />
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogDescription className="px-auto">
+                    {/* Modify card from homepage */}
+
+                    <Card className="w-full max-w-sm md:max-w-lg  mb-20 drop-shadow-xl ">
+                      <CardHeader>
+                        <CardTitle className=" flex justify-center mt-5">
+                          University Questions Bank
+                        </CardTitle>
+                        <CardDescription className="flex text-primary justify-center my-5">
+                          {" "}
+                          Find your Questions{" "}
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent className="flex flex-col justify-center mx-auto">
+                        <SelectUniversity />
+                        <span className="my-2"></span>
+                        <SelectDepartment />
+                        <span className="my-2"></span>
+                        <SelectCourse />
+                      </CardContent>
+                      <CardFooter className="flex justify-center md:justify-center">
+                        {
+                          <Button variant="secondarygreen">
+                            Modify Search
+                          </Button>
+                        }
+                      </CardFooter>
+                    </Card>
+                  </DialogDescription>
+                </DialogHeader>
+              </DialogContent>
+            </Dialog>
           </div>
           {/* Back arrow hidden on mobile */}
           <div className="backoption flex justify-center items-center hidden md:block">
@@ -143,21 +212,31 @@ export default function Page() {
         {/* Selection section hidden on mobile */}
         <div className="modify flex flex-col">
           {/* Head tag modify */}
-          <div className="flex justify-start items-center mx-6 hidden md:flex px-10 mb-1 ">
-            <h3 className="font-bold text-primary">MODIFY SEARCH</h3>
-            <LiaExchangeAltSolid className="mx-2 text-xl font-bold" />
-            <Button
-              variant="outline"
-              size="sm"
-              className="mb-1"
-              onClick={handledeselect}
-            >
-              Clear
-              <IoBackspaceOutline className="mx-2 text-destructive text-xl font-bold" />{" "}
-            </Button>
+          <div className="flex justify-between items-center mx-6 hidden md:flex mt-2  ">
+            <h3 className="font-bold  flex text-primary">
+              MODIFY SEARCH
+              <LiaExchangeAltSolid className="mx-2 text-xl  text-black font-bold" />
+            </h3>
+
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Button variant="outline" size="sm" className="mb-1 ml-2">
+                  Clear
+                  <IoBackspaceOutline className="mx-2  text-destructive text-xl font-bold" />{" "}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem onClick={handledeselect}>
+                  Modify Search
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={handledFilterdeselect}>
+                  Filters
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
 
-          <div className="selection hidden md:flex justify-center ">
+          <div className="selection hidden md:flex justify-center  ">
             <SelectUniversity />
             <SelectDepartment />
             <SelectCourse />
@@ -182,9 +261,28 @@ export default function Page() {
               </TabsList>
             </Tabs>
           </div>
+          {/* Filter clear For mobileview only  */}
+          <div className="md:hidden flex w-full justify-end">
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Button variant="outline" size="sm" className=" mx-2 my-1">
+                  Clear
+                  <IoBackspaceOutline className=" mx-2  text-destructive text-xl font-bold" />{" "}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem onClick={handledeselect}>
+                  Modify Search
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={handledFilterdeselect}>
+                  Filters
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </div>
       </div>
-      <main className="flex w-full h-[80vh] mt-2 ">
+      <main className="flex w-full h-[80vh] mt-3 ">
         {/* left */}
 
         <div className="left hidden  w-0 md:w-[20vw] h-[80vh] md:flex flex-col items-center border-2  ">
@@ -204,7 +302,7 @@ export default function Page() {
         </div>
         {/* Right */}
 
-        <div className="right  w-full   md:w-[80vw] md:h-[80vh] border-2 ">
+        <div className="right  w-full   md:w-[80vw] md:h-[80vh] border-1 ">
           {/* Data Table */}
           <QuestionsTable />
         </div>

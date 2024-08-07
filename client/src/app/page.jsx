@@ -1,8 +1,7 @@
 "use client";
-import { ReloadIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import Link from "next/link";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { CiSearch } from "react-icons/ci";
 import homeImage from "../../public/images/home.jpg";
 import { GlobalContext } from "../globalcontext/globalcontext";
@@ -23,14 +22,11 @@ import { SelectCourse } from "@/components/ui/SelectCourse";
 import { SelectDepartment } from "@/components/ui/SelectDepartment";
 import { SelectUniversity } from "@/components/ui/SelectUniversity";
 import UploadQuestionsButton from "@/components/ui/UploadQuestionsButton";
-import { Button } from "@/components/ui/button";
 
 export default function Home() {
   const { msg, setmsg } = useContext(GlobalContext);
-  const [isloading, SetLoading] = useState(false);
 
   return (
-    
     <>
       <div className="h-[50px] w-full flex justify-end items-center p-10">
         <UploadQuestionsButton />
@@ -85,12 +81,7 @@ export default function Home() {
               <SelectCourse />
             </CardContent>
             <CardFooter className="flex justify-center md:justify-center">
-              {isloading ? (
-                <Button disabled>
-                  <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
-                  Please wait
-                </Button>
-              ) : (
+              {
                 <Link
                   href="/questions"
                   className={buttonVariants({
@@ -99,7 +90,7 @@ export default function Home() {
                 >
                   Find Questions
                 </Link>
-              )}
+              }
             </CardFooter>
           </Card>
         </div>

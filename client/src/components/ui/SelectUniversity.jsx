@@ -3,7 +3,6 @@
 import { GlobalContext } from "@/globalcontext/globalcontext";
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 import { useContext, useEffect, useState } from "react";
-import { IoIosClose } from "react-icons/io";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -179,7 +178,7 @@ export function SelectUniversity() {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-full  overflow-hidden sm:w-[300px] md:w-[400px] mx-auto justify-between focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
+          className="w-full  overflow-hidden w-[250px] sm:w-[300px] md:w-[400px] mx-auto justify-between focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
         >
           {/* close Button */}
           {/* <IoIosClose className={cn("ml-auto h-4 w-4")} /> */}

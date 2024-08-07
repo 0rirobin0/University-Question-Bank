@@ -11,6 +11,7 @@ const GlobalProvider = ({ children }) => {
   const [SelectedCourse, setSelectedCourse] = useState(() => sessionStorage.getItem("SelectedCourse") || "");
   const [SelectedType, setSelectedType] = useState(() => sessionStorage.getItem("SelectedType") || "");
   const [SelectedYear, setSelectedYear] = useState(() => sessionStorage.getItem("SelectedYear") || "");
+  const [loading, setLoading] = useState(true);
 
   // Update sessionStorage whenever state changes
   useEffect(() => {
@@ -52,6 +53,8 @@ const GlobalProvider = ({ children }) => {
         setSelectedType,
         SelectedYear,
         setSelectedYear,
+        loading,
+         setLoading
       }}
     >
       {children}
