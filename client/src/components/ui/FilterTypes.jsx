@@ -12,7 +12,7 @@ export default function FilterTypes() {
     if (sessionType) {
       setSelectedType(sessionType);
     }
-  }, [setSelectedType]);
+  }, [SelectedType]);
 
   const handleValueChange = (value) => {
     setSelectedType(value);
@@ -53,7 +53,6 @@ export default function FilterTypes() {
           </Label>
         </div>
       </RadioGroup>
-      
     </div>
   );
 }

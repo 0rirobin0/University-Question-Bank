@@ -1,3 +1,4 @@
+"use client";
 import { GlobalContext } from "@/globalcontext/globalcontext";
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 import * as React from "react";
@@ -152,17 +153,13 @@ export function SelectDepartment() {
     const fetchedDepartments = fetchDepartments();
     setDepartments(fetchedDepartments);
 
-    // Initialize state from sessionStorage if available
-    const sessionDepartment = sessionStorage.getItem("SelectedDepartment");
-    if (sessionDepartment) {
-      setSelectedDepartment(sessionDepartment);
-    }
-  }, [setSelectedDepartment]);
+   
+  }, []);
 
   const handleSelect = (currentValue) => {
-    const newValue = currentValue === SelectedDepartment ? "" : currentValue;
-    setSelectedDepartment(newValue);
-    sessionStorage.setItem("SelectedDepartment", newValue); // Update sessionStorage
+
+    setSelectedDepartment(currentValue);
+  
     setOpen(false);
   };
 
@@ -173,7 +170,7 @@ export function SelectDepartment() {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-full overflow-hidden w-[250px] sm:w-[300px] md:w-[400px] mx-auto  justify-between focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
+          className="w-full overflow-hidden w-[250px] sm:w-[300px] md:w-[400px]  mx-auto justify-between focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
         >
           {SelectedDepartment
             ? departments.find(

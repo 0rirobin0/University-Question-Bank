@@ -1,4 +1,4 @@
-
+"use client";
 
 import { GlobalContext } from "@/globalcontext/globalcontext";
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
@@ -1074,17 +1074,12 @@ export function SelectCourse() {
     const fetchedCourses = fetchCourses();
     setCourses(fetchedCourses);
 
-    // Initialize state from sessionStorage if available
-    const sessionCourse = sessionStorage.getItem("SelectedCourse");
-    if (sessionCourse) {
-      setSelectedCourse(sessionCourse);
-    }
-  }, [setSelectedCourse]);
+
+  }, []);
 
   const handleSelect = (currentValue) => {
-    const newValue = currentValue === SelectedCourse ? "" : currentValue;
-    setSelectedCourse(newValue);
-    sessionStorage.setItem("SelectedCourse", newValue); // Update sessionStorage
+    setSelectedCourse(currentValue);
+
     setOpen(false);
   };
 

@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/sonner";
 import { GlobalProvider } from "@/globalcontext/globalcontext";
 import { Inter } from "next/font/google";

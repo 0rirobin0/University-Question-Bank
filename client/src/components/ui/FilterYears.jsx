@@ -1,4 +1,5 @@
 "use client";
+
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { GlobalContext } from "@/globalcontext/globalcontext";
@@ -15,8 +16,6 @@ export default function FilterYears() {
       setSelectedYear(sessionYear);
     }
   }, [setSelectedYear]);
-
- 
 
   const handleValueChange = (value) => {
     setSelectedYear(value);

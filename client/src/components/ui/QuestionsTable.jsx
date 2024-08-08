@@ -16,11 +16,17 @@ export default function QuestionsTable() {
   const [questionData, setQuestionData] = useState([]);
   const { loading, setLoading } = useContext(GlobalContext);
   const [error, setError] = useState(null);
-  const { SelectedUniversity, SelectedDepartment, SelectedCourse } =
-    useContext(GlobalContext);
+  const {
+    SelectedUniversity,
+    setSelectedUniversity,
+    SelectedDepartment,
+    SelectedCourse,
+  } = useContext(GlobalContext);
+
   const { SelectedType, SelectedYear } = useContext(GlobalContext);
 
   useEffect(() => {
+ 
     const fetchData = async () => {
       try {
         const response = await axios.get(
@@ -43,17 +49,6 @@ export default function QuestionsTable() {
     fetchData();
   }, [SelectedUniversity, SelectedDepartment, SelectedCourse]);
 
-  // Handle state initialization from sessionStorage
-  const [selectedUniversity, setSelectedUniversity] = useState("");
-  const [selectedDepartment, setSelectedDepartment] = useState("");
-
-  useEffect(() => {
-    const storedUniversity = sessionStorage.getItem("SelectedUniversity") || "";
-    const storedDepartment = sessionStorage.getItem("SelectedDepartment") || "";
-    setSelectedUniversity(storedUniversity);
-    setSelectedDepartment(storedDepartment);
-  }, []);
-
   // filter Data
   const selectedYearNumber = SelectedYear ? Number(SelectedYear) : null;
 
@@ -73,7 +68,7 @@ export default function QuestionsTable() {
   });
 
   console.log(filteredData);
-  console.log("all data : " + questionData);
+  // console.log("all data : " + questionData);
 
   return (
     <div className="overflow-y-auto max-h-[75vh]">

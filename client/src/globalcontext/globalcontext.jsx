@@ -1,46 +1,35 @@
 "use client";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 const GlobalContext = createContext();
 
 const GlobalProvider = ({ children }) => {
-  const [SelectedUniversity, setSelectedUniversity] = useState("");
-  const [SelectedDepartment, setSelectedDepartment] = useState("");
-  const [SelectedCourse, setSelectedCourse] = useState("");
+  // Retrieve values from sessionStorage, if available
+  const [SelectedUniversity, setSelectedUniversity] = useState(() => {
+    return sessionStorage.getItem('selectedUniversity') || "";
+  });
+  const [SelectedDepartment, setSelectedDepartment] = useState(() => {
+    return sessionStorage.getItem('selectedDepartment') || "";
+  });
+  const [SelectedCourse, setSelectedCourse] = useState(() => {
+    return sessionStorage.getItem('selectedCourse') || "";
+  });
   const [SelectedType, setSelectedType] = useState("");
   const [SelectedYear, setSelectedYear] = useState("");
   const [loading, setLoading] = useState(true);
 
+  // Save values to sessionStorage whenever they change
   useEffect(() => {
-    // Load initial state from sessionStorage on client side
-    setSelectedUniversity(sessionStorage.getItem("SelectedUniversity") || "");
-    setSelectedDepartment(sessionStorage.getItem("SelectedDepartment") || "");
-    setSelectedCourse(sessionStorage.getItem("SelectedCourse") || "");
-    setSelectedType(sessionStorage.getItem("SelectedType") || "");
-    setSelectedYear(sessionStorage.getItem("SelectedYear") || "");
-    setLoading(false); // Assuming loading is false after initial state is set
-  }, []);
-
-  useEffect(() => {
-    // Update sessionStorage whenever state changes
-    sessionStorage.setItem("SelectedUniversity", SelectedUniversity);
+    sessionStorage.setItem('selectedUniversity', SelectedUniversity);
   }, [SelectedUniversity]);
 
   useEffect(() => {
-    sessionStorage.setItem("SelectedDepartment", SelectedDepartment);
+    sessionStorage.setItem('selectedDepartment', SelectedDepartment);
   }, [SelectedDepartment]);
 
   useEffect(() => {
-    sessionStorage.setItem("SelectedCourse", SelectedCourse);
+    sessionStorage.setItem('selectedCourse', SelectedCourse);
   }, [SelectedCourse]);
-
-  useEffect(() => {
-    sessionStorage.setItem("SelectedType", SelectedType);
-  }, [SelectedType]);
-
-  useEffect(() => {
-    sessionStorage.setItem("SelectedYear", SelectedYear);
-  }, [SelectedYear]);
 
   return (
     <GlobalContext.Provider

@@ -1,3 +1,4 @@
+"use client";
 import { GlobalContext } from "@/globalcontext/globalcontext";
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 import { useContext, useEffect, useState } from "react";
@@ -153,20 +154,11 @@ export function SelectUniversity() {
   useEffect(() => {
     const fetchedUniversities = fetchUniversities();
     setUniversities(fetchedUniversities);
+  }, []);
 
-    // Initialize state from sessionStorage if available
-    const sessionUniversity = sessionStorage.getItem("SelectedUniversity");
-    if (sessionUniversity) {
-      setSelectedUniversity(sessionUniversity);
-    }
-  }, [setSelectedUniversity]);
-
-  // Handle university selection
   const handleSelect = (currentValue) => {
     setOpen(false);
-    const newValue = currentValue === SelectedUniversity ? "" : currentValue;
-    setSelectedUniversity(newValue);
-    sessionStorage.setItem("SelectedUniversity", newValue);
+    setSelectedUniversity(currentValue);
   };
 
   return (
