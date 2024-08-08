@@ -174,7 +174,7 @@ export default function Page() {
             </Dialog>
           </div>
           {/* Back arrow hidden on mobile */}
-          <div className="backoption flex justify-center items-center hidden md:block">
+          <div className="backoption justify-center items-center hidden md:block">
             <Link href="/">
               <IoIosArrowBack className="text-black-500 text-3xl mx-5" />
             </Link>
@@ -205,7 +205,7 @@ export default function Page() {
         {/* Selection section hidden on mobile */}
         <div className="modify flex flex-col">
           {/* Head tag modify */}
-          <div className="flex justify-between items-center mx-6 hidden md:flex mt-2  ">
+          <div className="justify-between items-center mx-6 hidden md:flex mt-2  ">
             <h3 className="font-bold  flex text-primary">
               MODIFY SEARCH
               <LiaExchangeAltSolid className="mx-2 text-xl  text-black font-bold" />
@@ -279,7 +279,7 @@ export default function Page() {
         {/* left */}
 
         <div className="left hidden  w-0 md:w-[20vw] h-[80vh] md:flex flex-col items-center border-2  ">
-          <div className="flex justify-start my-5 mx-6 hidden md:flex">
+          <div className=" justify-start my-5 mx-6 hidden md:flex">
             <h3 className="font-bold text-primary">FILTERS</h3>
             <CiFilter className="mx-2 text-xl font-bold" />
           </div>

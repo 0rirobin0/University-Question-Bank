@@ -12,12 +12,12 @@ const Toaster = ({ ...props }) => {
       toastOptions={{
         classNames: {
           toast:
-            "group toast group-[.toaster]:bg-background border-2  group-[.toaster]:text-foreground group-[.toaster]:border-destructive group-[.toaster]:shadow-lg",
+            "group toast group-[.toaster]:bg-primary   group-[.toaster]:text-background group-[.toaster]:border-border group-[.toaster]:shadow-lg",
           description: "group-[.toast]:text-muted-foreground",
           actionButton:
             "group-[.toast]:bg-accent group-[.toast]:text-primary-foreground",
           cancelButton:
-          "group-[.toast]:bg-muted group-[.toast]:text-muted-foreground group-[.toast]:p-2 group-[.toast]:rounded-full hover:bg-muted-dark focus:outline-none", // Ensure the close button is styled and visible
+            "group-[.toast]:bg-muted group-[.toast]:text-muted-foreground group-[.toast]:p-2 group-[.toast]:rounded-full hover:bg-muted-dark focus:outline-none", // Ensure the close button is styled and visible
         },
       }}
       {...props}
