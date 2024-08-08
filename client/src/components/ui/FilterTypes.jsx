@@ -12,43 +12,70 @@ export default function FilterTypes() {
     if (sessionType) {
       setSelectedType(sessionType);
     }
-  }, [SelectedType]);
+  }, []);
 
-  const handleValueChange = (value) => {
-    setSelectedType(value);
-    sessionStorage.setItem("SelectedType", value);
+  const handleClick = (value) => {
+    if (SelectedType === value) {
+      // Clear the selection if the same value is clicked again
+      setSelectedType("");
+      sessionStorage.removeItem("SelectedType");
+    } else {
+      // Otherwise, set the new value
+      setSelectedType(value);
+      sessionStorage.setItem("SelectedType", value);
+    }
   };
 
   return (
     <div className="my-3">
-      <RadioGroup value={SelectedType} onValueChange={handleValueChange}>
+      <RadioGroup value={SelectedType}>
         <div className="flex items-center space-x-2">
-          <RadioGroupItem value="semester" id="semester" />
-          <Label className="cursor-pointer" htmlFor="Semester">
+          <RadioGroupItem
+            value="semester"
+            id="semester"
+            onClick={() => handleClick("semester")}
+          />
+          <Label className="cursor-pointer" htmlFor="semester">
             Semester
           </Label>
         </div>
         <div className="flex items-center space-x-2">
-          <RadioGroupItem value="term/class test" id="term/class Test" />
-          <Label className="cursor-pointer" htmlFor="Term/Class Test">
+          <RadioGroupItem
+            value="term/class test"
+            id="term/class test"
+            onClick={() => handleClick("term/class test")}
+          />
+          <Label className="cursor-pointer" htmlFor="term/class test">
             Term/Class Test
           </Label>
         </div>
         <div className="flex items-center space-x-2">
-          <RadioGroupItem value="midterm" id="midterm" />
-          <Label className="cursor-pointer" htmlFor="Midterm">
+          <RadioGroupItem
+            value="midterm"
+            id="midterm"
+            onClick={() => handleClick("midterm")}
+          />
+          <Label className="cursor-pointer" htmlFor="midterm">
             Midterm
           </Label>
         </div>
         <div className="flex items-center space-x-2">
-          <RadioGroupItem value="labs" id="labs" />
-          <Label className="cursor-pointer" htmlFor="Labs">
+          <RadioGroupItem
+            value="labs"
+            id="labs"
+            onClick={() => handleClick("labs")}
+          />
+          <Label className="cursor-pointer" htmlFor="labs">
             Labs
           </Label>
         </div>
         <div className="flex items-center space-x-2">
-          <RadioGroupItem value="others" id="others" />
-          <Label className="cursor-pointer" htmlFor="Others">
+          <RadioGroupItem
+            value="others"
+            id="others"
+            onClick={() => handleClick("others")}
+          />
+          <Label className="cursor-pointer" htmlFor="others">
             Others
           </Label>
         </div>

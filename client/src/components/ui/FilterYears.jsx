@@ -17,17 +17,28 @@ export default function FilterYears() {
     }
   }, [setSelectedYear]);
 
-  const handleValueChange = (value) => {
-    setSelectedYear(value);
-    sessionStorage.setItem("SelectedYear", value);
+  const handleClick = (value) => {
+    if (SelectedYear === value) {
+      // Clear the selection if the same value is clicked again
+      setSelectedYear("");
+      sessionStorage.removeItem("SelectedYear");
+    } else {
+      // Otherwise, set the new value
+      setSelectedYear(value);
+      sessionStorage.setItem("SelectedYear", value);
+    }
   };
 
   return (
     <div className="my-3 mr-[73px]">
-      <RadioGroup value={SelectedYear} onValueChange={handleValueChange}>
+      <RadioGroup value={SelectedYear}>
         {years.map((year) => (
           <div key={year} className="flex items-center space-x-2">
-            <RadioGroupItem value={`${year}`} id={`${year}`} />
+            <RadioGroupItem
+              value={`${year}`}
+              id={`${year}`}
+              onClick={() => handleClick(`${year}`)}
+            />
             <Label className="cursor-pointer" htmlFor={`${year}`}>
               {year}
             </Label>
