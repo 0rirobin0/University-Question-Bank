@@ -4,11 +4,11 @@ import Link from "next/link";
 
 export default function UploadQuestionsButton() {
   return (
-    <div className="ml-auto ">
+    <div className=" mx-2">
       <Link
         href="/uploadquestions"
         className={buttonVariants({
-          variant: "outlinered",
+          variant: "destructive",
         })}
       >
         Upload Questions

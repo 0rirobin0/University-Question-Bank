@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
 import { useContext } from "react";
 import { CiSearch } from "react-icons/ci";
 import homeImage from "../../public/images/home.jpg";
@@ -17,18 +16,39 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 // select Component
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
+import LoginButton from "@/components/ui/LoginButton";
 import { SelectCourse } from "@/components/ui/SelectCourse";
 import { SelectDepartment } from "@/components/ui/SelectDepartment";
 import { SelectUniversity } from "@/components/ui/SelectUniversity";
 import UploadQuestionsButton from "@/components/ui/UploadQuestionsButton";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function Home() {
- 
+  const router = useRouter();
+  const { SelectedUniversity, SelectedDepartment, SelectedCourse } =
+    useContext(GlobalContext);
+
+  const gotoQuestionpage = () => {
+    if (
+      SelectedUniversity != "" ||
+      SelectedDepartment != "" ||
+      SelectedCourse != ""
+    ) {
+      router.push("/questions");
+    } else {
+      toast("Select atleast one Category!", {
+        duration: 2000,
+        className: "bg-destructive",
+      });
+    }
+  };
 
   return (
     <>
       <div className="h-[50px] w-full flex justify-end items-center p-10">
+        <LoginButton />
         <UploadQuestionsButton />
       </div>
       <main className="flex flex-col min-h-screen px-4 py-6 md:px-20 md:py-0 md:flex-row">
@@ -82,14 +102,9 @@ export default function Home() {
             </CardContent>
             <CardFooter className="flex justify-center md:justify-center">
               {
-                <Link
-                  href="/questions"
-                  className={buttonVariants({
-                    variant: "secondarygreen",
-                  })}
-                >
+                <Button variant="secondarygreen" onClick={gotoQuestionpage}>
                   Find Questions
-                </Link>
+                </Button>
               }
             </CardFooter>
           </Card>
