@@ -152,10 +152,9 @@ export function SelectDepartment() {
   React.useEffect(() => {
     const fetchedDepartments = fetchDepartments();
     setDepartments(fetchedDepartments);
-
-   
   }, []);
 
+  
   const handleSelect = (currentValue) => {
 
     setSelectedDepartment(currentValue);

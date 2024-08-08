@@ -1073,13 +1073,10 @@ export function SelectCourse() {
   React.useEffect(() => {
     const fetchedCourses = fetchCourses();
     setCourses(fetchedCourses);
-
-
   }, []);
 
   const handleSelect = (currentValue) => {
     setSelectedCourse(currentValue);
-
     setOpen(false);
   };
 

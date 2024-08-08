@@ -1,3 +1,4 @@
+"use client";
 import {
   Table,
   TableBody,
@@ -26,7 +27,6 @@ export default function QuestionsTable() {
   const { SelectedType, SelectedYear } = useContext(GlobalContext);
 
   useEffect(() => {
- 
     const fetchData = async () => {
       try {
         const response = await axios.get(

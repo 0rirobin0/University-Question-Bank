@@ -149,17 +149,19 @@ export function SelectUniversity() {
   const [universities, setUniversities] = useState([]);
   const { SelectedUniversity, setSelectedUniversity } =
     useContext(GlobalContext);
-
+    
   // Fetch universities on component mount
   useEffect(() => {
     const fetchedUniversities = fetchUniversities();
     setUniversities(fetchedUniversities);
   }, []);
 
+
   const handleSelect = (currentValue) => {
     setOpen(false);
     setSelectedUniversity(currentValue);
   };
+ 
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
