@@ -1,6 +1,6 @@
-
 import { Toaster } from "@/components/ui/sonner";
 import { GlobalProvider } from "@/globalcontext/globalcontext";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -21,6 +21,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className={inter.className}>
+        <SpeedInsights />
         <GlobalProvider>{children} </GlobalProvider>
         <Toaster />
       </body>
