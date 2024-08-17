@@ -38,9 +38,8 @@ export default function Home() {
     ) {
       router.push("/questions");
     } else {
-      toast("Select atleast one Category!", {
+      toast.error("Select atleast one Category!", {
         duration: 2000,
-        className: "bg-destructive",
       });
     }
   };
@@ -102,7 +101,7 @@ export default function Home() {
             </CardContent>
             <CardFooter className="flex justify-center md:justify-center">
               {
-                <Button variant="secondarygreen" onClick={gotoQuestionpage}>
+                <Button variant="default" onClick={gotoQuestionpage}>
                   Find Questions
                 </Button>
               }

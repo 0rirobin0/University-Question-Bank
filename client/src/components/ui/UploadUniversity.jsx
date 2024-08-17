@@ -72,10 +72,7 @@ function fetchUniversities() {
       value: "Bangladesh University of Professionals",
       label: "Bangladesh University of Professionals",
     },
-    {
-      value: "Noakhali Science and Technology University",
-      label: "Noakhali Science and Technology University",
-    },
+
     {
       value: "Cox's Bazar International University",
       label: "Cox's Bazar International University",
@@ -106,10 +103,7 @@ function fetchUniversities() {
       label: "University of Asia Pacific",
     },
     { value: "Southeast University", label: "Southeast University" },
-    {
-      value: "United International University",
-      label: "United International University",
-    },
+
     {
       value: "University of Development Alternative",
       label: "University of Development Alternative",
@@ -138,16 +132,15 @@ function fetchUniversities() {
       value: "Noakhali Science and Technology University",
       label: "Noakhali Science and Technology University",
     },
-    { value: "North South University", label: "North South University" },
+
     { value: "Prime University", label: "Prime University" },
-    { value: "East West University", label: "East West University" },
   ];
 }
 
-export function SelectUniversity() {
+export function UploadUniversity() {
   const [open, setOpen] = useState(false);
   const [universities, setUniversities] = useState([]);
-  const { SelectedUniversity, setSelectedUniversity } =
+  const { UploadUniversityData, setUploadUniversityData } =
     useContext(GlobalContext);
 
   // Fetch universities on component mount
@@ -158,7 +151,7 @@ export function SelectUniversity() {
 
   const handleSelect = (currentValue) => {
     setOpen(false);
-    setSelectedUniversity(currentValue);
+    setUploadUniversityData(currentValue);
   };
 
   return (
@@ -172,9 +165,9 @@ export function SelectUniversity() {
         >
           {/* close Button */}
           {/* <IoIosClose className={cn("ml-auto h-4 w-4")} /> */}
-          {SelectedUniversity
+          {UploadUniversityData
             ? universities.find(
-                (university) => university.value === SelectedUniversity
+                (university) => university.value === UploadUniversityData
               )?.label
             : "Select University"}
 
@@ -204,7 +197,7 @@ export function SelectUniversity() {
                   <CheckIcon
                     className={cn(
                       "ml-auto h-4 w-4",
-                      SelectedUniversity === university.value
+                      UploadUniversityData === university.value
                         ? "opacity-100"
                         : "opacity-0"
                     )}

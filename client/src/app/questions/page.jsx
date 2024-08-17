@@ -67,14 +67,23 @@ export default function Page() {
   const router = useRouter();
 
   const SearchdeselectToast = () => {
-    toast("Search has been Cleared !", {
+    toast.success("Search has been Cleared !", {
       duration: 2000,
-      variant: "primary",
+      style: {
+        backgroundColor: "#16a34a",
+        color: "#fff",
+      },
     });
   };
 
   const FilterdeselectToast = () => {
-    toast("Filter has been Cleared! ", { duration: 2000 });
+    toast.success("Filter has been Cleared! ", {
+      duration: 2000,
+      style: {
+        backgroundColor: "#16a34a",
+        color: "#fff",
+      },
+    });
   };
   const handledeselect = () => {
     setSelectedUniversity("");

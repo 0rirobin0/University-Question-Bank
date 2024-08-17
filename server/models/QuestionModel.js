@@ -5,45 +5,48 @@ const QuestionSchema = new mongoose.Schema(
         
         title: {
             type:String,
-            required:true
+            //required:true
         },
         university: {
             type:String,
-            required:true
+            //required:true
         },
         department: {
             type:String,
-            required:true
+            //required:true
         },
         course: {
             type:String,
-            required:true
+            //required:true
         },
         year: {
             type:Number,
-            required:true
+            //required:true
         },
         type: {
             type:String,
-            required:true
+            //required:true
         }, 
          link: {
             type:String,
-            required:true
+            //required:true
+        },
+        public_id: {
+            type:String,
+            //required:true
         },
         uploader_id: {
             type:String,
-            required:true
+            //required:true
         },
         isAproved: {
             type:Boolean,
-            required:true
+            //required:true
         },
         contentType:
         {
             type:String,
-            default:"question",
-            required:true
+            //required:true
         },
         UploadTime:
         {

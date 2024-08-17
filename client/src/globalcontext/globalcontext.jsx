@@ -24,6 +24,13 @@ const GlobalProvider = ({ children }) => {
   const [SelectedYear, setSelectedYear] = useState("");
   const [loading, setLoading] = useState(true);
 
+  // Upload variable
+  const [UploadDepartmentData, setUploadDepartmentData] = useState("");
+  const [UploadUniversityData, setUploadUniversityData] = useState("");
+  const [UploadCourseData, setUploadCourseData] = useState("");
+  const [UploadTypeData, setUploadTypeData] = useState("");
+  const [UploadYearData, setUploadYearData] = useState("");
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       sessionStorage.setItem("SelectedUniversity", SelectedUniversity);
@@ -57,6 +64,17 @@ const GlobalProvider = ({ children }) => {
         setSelectedYear,
         loading,
         setLoading,
+
+        UploadUniversityData,
+        setUploadUniversityData,
+        UploadDepartmentData,
+        setUploadDepartmentData,
+        UploadCourseData,
+        setUploadCourseData,
+        UploadTypeData,
+        setUploadTypeData,
+        UploadYearData,
+        setUploadYearData,
       }}
     >
       {children}

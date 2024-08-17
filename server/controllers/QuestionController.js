@@ -20,21 +20,40 @@ const buildQuery = (params) => {
    return query;
  };
 
-exports.UploadQuestion=async(req,res)=>
+exports.UploadQuestion= async(req,res)=>
 {
- const data= req.body;
-
- try {
-    const que = new Question(data);
-    await que.save();
-    res.status(201).json({message:'Questions added successfully', que})
-
- } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server error : Question Upload Failed' });
- }
-
-
+   try {
+      // req.file contains information about the uploaded file
+      const file = req.file;
+  
+      // req.body contains other form fields
+      const { contentType, course, department, title, university, type } = req.body;
+  
+      if (!file) {
+        return res.status(400).json({ message: 'No file uploaded' });
+      }
+  
+      // Create a new entry in your database or perform any other actions with the uploaded file and form data
+      const que = new Question({
+        link: file.path, // URL of the uploaded file in Cloudinary
+        public_id: file.filename, // Public ID of the uploaded file
+        contentType,
+        course,
+        department,
+        title,
+        type,
+        university
+      });
+  
+      await que.save();
+      
+      res.status(201).json({ message: 'Questions added successfully', que });
+  
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server error: Question Upload Failed' });
+    }
+    
 }  
 
 
