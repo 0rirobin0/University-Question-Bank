@@ -9,6 +9,7 @@ const frontUrl = process.env.NEXT_PUBLIC_APP_FRONTEND_URL;
 
 // Route Import 
 const QuestionRoute =require("./routes/QuestionRoute")
+const UserRoute = require("./routes/UserRoute");
 
 const app= express();
 const PORT = 5000;
@@ -29,7 +30,9 @@ const corsOptions ={
 app.use(cors(corsOptions));  
 
 // Routes
+app.use('/user',UserRoute);
 app.use('/question',QuestionRoute);
+
 app.use('resources',(req,res)=>
 {
   res.status(200);

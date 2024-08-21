@@ -1,25 +1,6 @@
 const mongoose = require('mongoose');
 const Question = require('../models/QuestionModel');
 
-// function to handle question filter
-const buildQuery = (params) => {
-   const query = {};
- 
-   if (params.SelectedUniversity) {
-     query.university = params.SelectedUniversity;
-   }
- 
-   if (params.SelectedDepartment) {
-     query.department = params.SelectedDepartment;
-   }
- 
-   if (params.SelectedCourse) {
-     query.course = params.SelectedCourse;
-   }
- 
-   return query;
- };
-
 exports.UploadQuestion= async(req,res)=>
 {
    try {
@@ -111,3 +92,23 @@ exports.GetQuestionbyID = async(req,res)=>
         
         
         }  
+
+        
+// function to handle question filter
+const buildQuery = (params) => {
+   const query = {};
+ 
+   if (params.SelectedUniversity) {
+     query.university = params.SelectedUniversity;
+   }
+ 
+   if (params.SelectedDepartment) {
+     query.department = params.SelectedDepartment;
+   }
+ 
+   if (params.SelectedCourse) {
+     query.course = params.SelectedCourse;
+   }
+ 
+   return query;
+ };
