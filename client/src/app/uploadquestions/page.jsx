@@ -63,12 +63,13 @@ export default function Page() {
     event.preventDefault(); // Prevent page reload on form submission
 
     if (!fileData) {
-      toast.error("Please upload a file before submitting.");
-      return;
+        toast.error("Please upload a file before submitting.");
+        return;
     }
 
-    // Append fields to FormData
+    const formData = new FormData(); // Initialize inside handleSubmit
 
+    // Append fields to FormData
     formData.append("file", fileData);
     formData.append("title", title);
     formData.append("university", UploadUniversityData || "");
@@ -79,33 +80,34 @@ export default function Page() {
     formData.append("contentType", fileData.type);
 
     for (let pair of formData.entries()) {
-      console.log(`${pair[0]}: ${pair[1]}`);
+        console.log(`${pair[0]}: ${pair[1]}`);
     }
 
     try {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/question/post`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-          timeout: 5000,
-        }
-      );
+        const response = await axios.post(
+            `${process.env.NEXT_PUBLIC_API_URL}/question/post`,
+            formData,
+            {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+                timeout: 5000,
+            }
+        );
 
-      toast.success("Question Submitted Successfully!", {
-        duration: 2000,
-        style: {
-          backgroundColor: "#16a34a",
-          color: "#fff",
-        },
-      });
+        toast.success("Question Submitted Successfully!", {
+            duration: 2000,
+            style: {
+                backgroundColor: "#16a34a",
+                color: "#fff",
+            },
+        });
     } catch (error) {
-      toast.error("An error occurred during submission.");
-      console.error(error);
+        toast.error("An error occurred during submission.");
+        console.error(error);
     }
-  };
+};
+
 
   return (
     <div className="w-full h-screen flex flex-col md:flex-row">

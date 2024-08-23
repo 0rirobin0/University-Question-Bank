@@ -8,7 +8,7 @@ exports.UploadQuestion= async(req,res)=>
       const file = req.file;
   
       // req.body contains other form fields
-      const { contentType, course, department, title, university, type } = req.body;
+      const { contentType, course, department, title, university, type ,year} = req.body;
   
       if (!file) {
         return res.status(400).json({ message: 'No file uploaded' });
@@ -23,6 +23,7 @@ exports.UploadQuestion= async(req,res)=>
         department,
         title,
         type,
+        year,
         university
       });
   
